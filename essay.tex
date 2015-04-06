@@ -1,0 +1,389 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{partiiiessay}
+
+\title{Serre's conjecture} %TODO subtitle?
+\author{Alex J. Best}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+In 1987 Jean-Pierre Serre published a paper \cite{Serre87}, ``Sur les repr\'esentations modulaires de degr\'e 2 de $\Gal(\Qb/\QQ)$'', in the Duke Mathematical Journal.
+In this paper Serre outlined a conjecture detailing a precise relationship between certain mod $p$ Galois representations and specific mod $p$ modular forms.
+The conjecture has since been proven correct by the work of numerous people, culminating with that of Khare, Wintenberger and Kisin, published in 2009 \cite{KWI,KWII,Kisin}.
+
+Here we provide a motivated account of the standard form of the conjecture before going on to compute some explicit examples and examining some interesting consequences.
+
+Beyond the original paper there are many very good accounts of Serre's statement, including Cais \cite{Cais}, Edixhoven \cite{Edixhoven} (both of which use Katz's definition of mod $p$ modular forms), Ribet--Stein \cite{RibetStein} and Darmon \cite{Darmon} (which stay closer to the original article).
+Alex Ghitza has prepared a translation of part of Serre's paper \cite{Ghitza} which has been helpful.
+%I consulted these articles while preparing the current essay and they were of great help. TODO
+
+
+\section{Background}
+Here we fix several definitions and key results that will be relevant to our study of Serre's conjecture.
+
+%TODO: mod p forms, of specific weight level char
+\subsection{Modular forms}
+\begin{defn}
+Let
+\[
+S_k(N, \epsilon, R)
+\]
+be the space of cusp forms of weight $k$ for $\Gamma_1(N)$ with character $\epsilon$ and $q$-expansion coefficients in the ring $R$.
+\end{defn}
+
+
+\subsection{Galois representations}
+%TODO refs, wiese?
+\begin{defn}
+A \emph{$n$-dimensional mod $p$ Galois representation} is a homomorphism
+\[
+\rho\colon \GQ \to \GL_n(\Fb_p).
+\]
+\end{defn}
+
+Here we deal mostly with 1 and 2 dimensional mod $p$ Galois representations.
+Those of dimension 1 (i.e. maps $\phi\colon\GQ \to \Fb_p^*$) are called \emph{characters}.
+
+Recall that $\GQ$ is defined as the inverse limit of $\Gal(K/\QQ)$ as $K$ ranges over all number fields.
+So the group $\GQ$ naturally has the profinite topology where the open subgroups are the subgroups of finite index.
+Our representations are always continuous (where we give $\GL_n(\Fb_p)$ the discrete topology), though we will often still state as such to remind ourselves.
+The continuity condition for mod $p$ representations then reduces to having an open kernel and thus our representations have finite image.\\
+
+%TODO frob, ramified
+Although our main object of study is $\GQ$ it will be very useful for us to also consider representations of
+\[
+\Gp = \Gal(\Qpb/\Qp).
+\]
+Indeed such representations can be obtained from those of $\GQ$ via restriction.
+
+The group $\Gp$ has several important subquotients which will be helpful to study restrictions of representations to.
+\begin{defn}\label{defn-inert}
+The first is the \emph{inertia subgroup} at $I_p$ which is defined as the kernel of the map
+\[
+\Gp \twoheadrightarrow \Gal(\Fb_p/\FF_p)
+\]
+obtained by quotienting out $\Qpb$ by its maximal ideal.
+
+Next the \emph{wild} inertia group $I_{p,w}$ is the maximal pro-$p$-subgroup of $I_p$ and the \emph{tame} inertia group is the quotient
+\[
+I_{p,t} = I_p / I_{p,w}.
+\]
+
+Finally we may define a series of subgroups of inertia, the \emph{higher inertia groups}
+\[
+I_p^u = \{\}\subseteq I_p.
+\]
+These form an ascending chain
+\[
+I_p = I_p^0 \subseteq I_p^1 \subseteq \cdots.
+\]
+\end{defn}
+
+\begin{defn}
+Given a character $\phi\colon\GQ \to K^*$ for some field $K$ and after fixing an embedding $\Qb\hookrightarrow \CC$.
+The image of complex conjugation, viewed as an element $c\in \GQ$, under $\phi$ must be an element of order 2 in $K^*$, so must be $\pm 1$.
+If $\phi(c) = -1$ we say $\phi$ is \emph{odd}, otherwise we say $\phi$  is \emph{even} (though we shall be concerned mostly with distinguishing odd representations here).
+
+Now given any Galois representation
+\[
+\rho\colon\GQ \to \GL_n(K)
+\]
+we can define the parity of $\phi$ to be that of the character $\det\phi$.
+\end{defn}
+
+
+
+\begin{defn}
+Each character
+\[
+\phi \colon \GQ \to \Fb_p^*
+\]
+has finite image and so factors through some $\FF_{p^n}$, the smallest $n$ for which this can happen is called the \emph{level} of the character.
+\end{defn}
+
+For each $n \ge 1$ we now distinguish $n$ special characters of $I_{t,p}$ of level $n$ which will allow us to describe all characters of a particular level.
+
+\begin{defn}\label{def-fund}
+The \emph{fundamental characters} of level $n$ are defined by extending the natural character
+\[
+\psi\colon I_{p,t} \to \FF_{p^n}^*
+\]
+to an $\Fb_p$-character via the $n$ embeddings of $\FF_{p^n}^* \hookrightarrow \Fb_p^*$. %TODO
+\end{defn}
+
+%TODO concequences of fund chars
+
+
+
+\section{Obtaining Galois representations from modular forms}
+The two concepts just introduced, modular forms and Galois representation, appear at first glance not to be particularly related to each other.
+However in reality they are inextricably linked and exploring some of the links between them shall be the goal of the rest of this essay.
+
+We shall start with a historically important example that provides the first glimpse of the behaviour we will be looking at.
+
+\begin{ex}\label{ex-delt}
+Let
+\[
+\Delta = \sum_{n \ge 1} \tau(n) q^n
+\]
+be the Ramanujan $\Delta$ function, the unique normalised cusp form of weight 12 for $\Gamma_1(1) = \SL_2(\ZZ)$.
+\end{ex}
+%TODO example of ec ? then more general form -> gal rep
+
+%TODO attaching gal reps to forms
+Given examples such as the above it is natural to wonder whether such a relationship holds more generally.
+Indeed Serre asked how one could associate to each ???? eigenform a Galois representation whose traces of Frobenius elements match the Hecke eigenvalues mod $p$.
+More precisely, Serre conjectured the following: %TODO ref
+
+\begin{thm}\label{thm-assoc}
+Given a normalised cuspidal mod $p$ eigenform $f$ of weight $k$ and character $\epsilon$ there exists a two-dimensional mod $p$ Galois representation $\rho_f$ such that for all primes $\ell$ not dividing $pN$ %TODO
+\begin{enumerate}[(i)]
+\item $\tr(\rho_f (\Frob_\ell)) = a_\ell$,
+\item $\det(\rho_f (\Frob_\ell)) = \ell^{k-1}\epsilon(\ell)$. %TODO factor a la diamond-im
+\end{enumerate}
+We often refer to the representation $\rho_f$ as arising from, or being attached to, $f$.
+\end{thm}
+
+%TODO when
+The proof of this theorem is due to Shimura when $k = 2$ \cite{Shimura}, Deligne when $k > 2$ \cite{Deligne} and Deligne--Serre when $k = 1$ \cite{DeligneSerre}.
+In fact the constructions obtained by these authors are of $p$-adic Galois representations $\rho_f\colon \GQ \to \GL_2(\QQ_p)$ and the representation of the theorem is then obtained from the $p$-adic one by a process of reduction and semisimplification. %TODO
+
+If we consider $c\in \GQ$ corresponding to complex conjugation we see that
+\[
+\det\rho_f(c) = ?? = -1.%TODO
+\]
+So such a representation $\rho_f$ is necessarily \emph{odd}.
+
+
+
+\section{Serre's Conjecture}
+Given the above result it is natural to ask about the converse statement, given a Galois representation satisfying some necessary conditions, does it arise from a newform?
+Serre's conjecture is that the answer to this question is yes, all Galois representations that could possibly arise from a newform as in Theorem~\ref{thm-assoc} do.
+The conjecture naturally comes into two parts, one weaker existence statement, and another refined form that makes exact predictions about the quantities involved.
+
+\begin{conjecture}[Serre's conjecture, qualitative form]\label{conj-qual}
+Let $\rho\colon \GQ \to \GL_2(\Fb_p)$ be a continuous, odd, irreducible Galois representation.
+Then there exists a mod $p$ cusp form $f$ such that $\rho$ is isomorphic to $\rho_f$, the Galois representation associated to $f$ defined in Theorem~\ref{thm-assoc}.
+\end{conjecture}
+
+This conjecture (at least for $N = 1$) appeared much earlier than the Duke paper and is mentioned by Serre in 1975 \cite{Serre75}.
+
+%TODO elaborate on importance / use
+
+Given the above statement it is natural to ask about the properties of the form $f$ whose existence is claimed.
+Can anything be said about the weight and level of $f$ based only on the properties of $\rho$?
+Serre also conjectured that the answer to this question is yes.
+He defined a weight, level and character for each $\rho$ such that there should be a form $f$ as above of that weight, level and character.
+In a slightly backwards manner we will first state this refined form of the conjecture, before moving on to motivate and define the quantities $N(\rho)$, $k(\rho)$ and character $\epsilon(\rho)$ used in the statement.
+
+\begin{conjecture}[Serre's conjecture, refined form]\label{conj-ref}
+Let $\rho\colon \GQ \to \GL_2(\Fb_p)$ be a continuous, odd, irreducible Galois representation.
+Then there exists a mod $p$ cusp form $f$ of weight $k(\rho)$, level $N(\rho)$ and character
+\[
+\epsilon(\rho)\colon (\ZZ/N(\rho)\ZZ)^* \to \Fb_p,
+\]
+whose associated Galois representation $\rho_f$ is isomorphic to $\rho$.
+% TODO Moreover the $N(\rho)$ and $k(\rho)$ are the lowest weight and level for which there exists such a form $f$.
+\end{conjecture}
+
+% TODO This statement is powerful, even given the existence statement of Conjecture~\ref{conj-qual} it is not at all clear that such a minimal weight and level should exist, let alone be given by the relatively straightforward (though intricate) description we are about to detail.
+
+From now on we refer to a Galois representation $\rho$ satisfying the hypotheses of this conjecture as being of \emph{Serre type}.
+We also call a normalised cuspidal eigenform of weight $k$, level $N$ and character $\epsilon$ a form of type $(k,\,N,\,\epsilon)$.%TODO at end?
+
+\subsection{Results on Galois representations associated to modular forms}
+In order to try and understand which types of forms can give rise to a particular representation it is useful to take an arbitrary form and study the properties of the representation attached to it.
+This has been done by several people and the information which will be important to us is contained in the following theorems. %TODO
+
+Fix a prime $p$ and a normalised eigenform $f \in S_k(\Gamma_1(N), \epsilon, \FF_p)$ with $q$-expansion %TODO Fb FF?
+\[
+f = \sum_{n\ge 1} a_nq^n.
+\]
+Let $\rho_f$ be the mod $p$ Galois representation attached to $f$ by Theorem~\ref{thm-assoc}.
+Concerning the conductor of $\rho_f$ we have the following result of Carayol \cite{Carayol}.
+
+\begin{thm}
+Let $N(\rho_f)$ be the level associated to $\rho_f$ (which we will define explicitly shortly), then
+\[
+N(\rho_f)|N.
+\]
+\end{thm}
+
+Given this it is natural to hope that any Galois representation of Serre type arises from a form of weight exactly $N(\rho)$.
+
+We can also consider the restriction of $\rho_f$ to $I_p$, for this there are two different theorems depending on whether $a_p \ne 0$ (the \emph{ordinary case}) or otherwise.
+
+\begin{thm}[Deligne]
+Suppose $k\ge 2$ and $a_p \ne 0$ and let $\lambda(a)\colon \Gp \to \Fb_p^*$ be the unramified character of $\Gp$ that takes all $\Frob_p \in \Gp /I$ to $a$, then we have
+\[
+\rho_{f,p} = \begin{pmatrix} \chi^{k-1}\lambda(\epsilon(p)/a_p) & * \\ 0 & \lambda(a_p)\end{pmatrix}
+\]
+up to conjugation in $\GL_2(\Fb_p)$.
+\end{thm}
+
+A proof of this result when $k \le p$ is given in \cite{Gross} and the general case was originally proved in an unpublished letter from Deligne to Serre.
+%TODO add in others, wiles?
+
+\begin{thm}[Fontaine]
+Suppose $k\ge 2$ and $a_p = 0$ and let $\psi_1$ and $\psi_2$ be the two fundamental characters of level 2 then we have
+\[
+\rho_{f,p}|I = \begin{pmatrix} \psi_1^{k-1} & 0 \\ 0 & \psi_2^{k-1}\end{pmatrix}
+\]
+up to conjugation in $\GL_2(\Fb_p)$.
+\end{thm}
+
+It is worth noting that proofs of some of these theorems came after Serre's definition of the weight, level and character.
+However it seems likely that observations of the above results in specific examples informed the recipe below.
+
+\subsection{The optimal level}
+Assume that we have a Galois representation $\rho\colon \GQ \to \GL_2(\Fb_p)$ of Serre type.
+We now define the integer $N(\rho) \ge 1$ which plays the role of the optimal level in the conjecture.
+
+We can equivalently view our representation $\rho$ as a homomorphism
+\[
+\GQ \to \Aut(V),
+\]
+where $V$ is a two-dimensional $\Fb_p$ vector space.
+Now letting $I_{\ell,i}\subset \GQ$ be the $i$th inertia subgroup at $\ell$ for each prime $\ell$, as defined in Definition~\ref{defn-inert}, we can consider the fixed subspace of $V$
+\[
+V^{I_{\ell,i}} = \{v\in V : \rho(\sigma) v = v\ \forall \sigma \in I_{\ell,i}\}.
+\]
+We can then define integers $\nu_\ell(\rho)$ by
+\[
+\nu_\ell(\rho) = \sum_{i = 0}^{\infty} \frac{1}{[I_{\ell,0} : I_{\ell,i}]} \dim\left(V/V^{I_{\ell,i}}\right),
+\]
+and set
+\[
+N(\rho) = \prod_{\substack{\ell \ne p\\ \ell\text{ prime}}} \ell^{\nu_\ell(\rho)}.
+\]
+Note that this is indeed a positive integer, and by construction it is coprime to $\ell$.
+
+Unwinding this definition when $\rho$ is unramified at $\ell$ we see that all $V^{I_{\ell,i}}$ are in fact all of $V$ as the ramification groups are trivial. %TODO check
+Hence in this case $\nu_\ell(\rho) = 0$ and so $N(\rho)$ is only divisible by the primes $\ell$ at which $\rho$ is ramified.
+
+The definition above is that of the \emph{Artin conductor} of a representation, but with the $p$ part ignored. %TODO
+
+Given a continuous mod $p$ Galois representation $\rho$ we can compose with the determinant map to obtain a homomorphism
+\[
+\det \rho\colon \GQ \to \Fb_p^*.
+\]
+As $\rho$ factors through some finite Galois group the image of $\rho$ in $\GL_n(\Fb_p)$ is finite, and hence so is the image of $\det \rho$.
+So the image of $\det \rho$ is cyclic.
+
+
+\subsection{The character and the weight mod $p-1$}
+Beginning with a Galois representation of Serre type as before we now define a character
+\[
+\epsilon(\rho)\colon  (\ZZ/N(\rho)\ZZ)^* \to \Fb_p.
+\]
+We also state the class of $k(\rho)$~mod~$p-1$, though the full definition of $k(\rho)$ will be given in the next section.
+
+
+\subsection{The optimal weight}
+We now come to the final ingredient in Serre's recipe, that of the weight $k(\rho)$.
+Given our Galois representation
+\[
+\rho \colon \GQ \to \Aut(V)
+\]
+we can form a representation of $\Gp$ by composing with the restriction map $\Gp \to\GQ$, to obtain
+\[
+\rho_p\colon \Gp \to \GQ \to \Aut(V).
+\]
+The definition of $k(\rho)$ will in fact only depend on this $\rho_p$ and therefore the weight will only reflect the behaviour at $p$ of the representation.
+We will from here on refer to $k(\rho)$ as $k(\rho_p)$ to emphasise this.
+
+After choosing a particular basis the action of $\Gp$ on $V$ is given by 
+The semisimplification of $V$ is then obtained by replacing this action with
+vector space $V$ with $\Gp$ action blah, denoted $\Vss$. %TODO
+In general the semisimplification is obtained by taking the direct sum of the Jordan--H\"older constituents of a representation, though for us the above description suffices.
+
+Now consider, instead of $V$, this action of $\Gp$ on the semisimplification of $V$.
+The action of $I_{p,w}$ on $\Vss$ is trivial and therefore the quotient $I_{p,t}$ has a well defined action on $\Vss$.
+This action is diagonalisable and so it is given by a pair of characters
+\[
+\phi_1,\,\phi_2\colon I_{p,t} \to \Fb_p^*.
+\]
+
+\begin{prop}
+Both of the characters $\phi_1$ and $\phi_2$ are of the same level, and that level is either 1 or 2.
+
+Moreover if they are both of level 2 then they are $p$th powers of each other.
+\end{prop}
+\begin{proof}
+%TODO set \{\phi_1, \phi_2\} is stable under $p$th powering.
+We have two possibilities, either taking the $p$th power fixes both $\phi_1$ and $\phi_2$ or it swaps them.
+If they are both fixed then they must be of level 1.
+Otherwise, if they swap under $p$th powering, then they each of them is fixed under powering by $p^2$ and hence they are of level 2.
+\end{proof}
+
+We now treat three different cases separately, based on the levels of the characters just obtained and whether $I_{p,w}$ acts trivially on $V$.
+
+\subsubsection{The level 2 case}
+When the characters are of level 2 we can write them in terms the fundamental characters $\psi_1$ and $\psi_2$ of level 2 (as defined in Definition~\ref{def-fund}) and use this description to define $k(\rho_p)$.
+Specifically we can write $\phi_1$ as
+\[
+\phi_1 = \psi_1^a\psi_2^b
+\]
+with $0\le a,b\le p-1$.
+If $a = b$ then $\phi_1 = (\psi_1 \psi_2)^a$, which contradicts $\phi_1$ being of level 2 as $\psi_1\psi_2$ is the level 1 cyclotomic character.
+Now we observe that
+\[
+\phi_2 = \phi_1^p = (\psi_1^a\psi_2^b)^p = \psi_2^a\psi_1^b,
+\]
+and so by switching the places of $\phi_1$ and $\phi_2$ we may assume that in fact $0\le a < b\le p-1$.
+In this case we then set
+\[
+k(\rho) = 1 + pa + b.
+\]
+
+
+
+\subsubsection{The level 1 tame case}
+Assuming $\phi_1$ and $\phi_2$ are of level 1 and the action of $I_{p,w}$ on $V$ is semisimple we can write
+\[
+\rho_p |_{I_{p,w}} = \begin{pmatrix}
+\phi_1 & 0 \\
+0      & \phi_2 \end{pmatrix} = \begin{pmatrix}
+\chi^a & 0 \\
+0      & \chi^b \end{pmatrix}.
+\]
+So we obtain integers $a$ and $b$ defined modulo $p-1$, we can then assume that $0\le a \le b \le p-2$ by switching $\phi_1$ and $\phi_2$ if necessary.
+We then set
+\[
+k(\rho_p) = \begin{cases}
+1 + pa + b & \text{if }(a,\,b) \ne (0,\,0), \\
+         p & \text{if }(a,\,b) = (0,\,0).
+\end{cases}
+\]
+
+
+\subsubsection{The level 1 non-tame case}
+The final case is where $\phi_1$ and $\phi_2$ are of level 1 but the action of $I_{p,w}$ on $V$ is not semisimple.
+
+
+\section{Examples}
+One of the great things about Serre's conjecture, even if it were not yet known to be correct, is the fact that it can be used in specific cases easily.
+Specifically, given a Galois representation of Serre type we can calculate the optimal weight and level as detailed above, and then in many instances we can compute the associated space of modular forms and look for a form from which our Galois representation arises.
+
+\begin{ex}
+Let's return first to Example~\ref{ex-delt} and check that everything we have just done is consistent with what we saw there.
+\end{ex}
+
+\section{Consequences}
+Serre's conjecture is a strong statement that implies many other difficult results within number theory.
+We now mention briefly a few of these.
+While many of these results were obtained via other means long before Serre's conjecture was shown in general they are worth mentioning to demonstrate the power of the conjecture.
+
+The next result we can deduce from Serre's conjecture is not as obviously related to the objects related in the conjecture at all.
+
+\section{The proof}
+It needs mentioning that the conjecture exactly as stated above is in fact \emph{incorrect}.
+
+
+\bibliographystyle{alpha}
+\bibliography{essay}
+
+\end{document}

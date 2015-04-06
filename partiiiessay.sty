@@ -1,0 +1,37 @@
+\ProvidesPackage{partiiiessay}[2015/02/28 v1.0 Essay style]
+\RequirePackage{amsfonts, amsmath, amssymb, amsthm, hyperref, mathpazo, enumerate}
+\RequirePackage[nottoc,numbib]{tocbibind}
+\RequirePackage[protrusion=true,expansion=true]{microtype}
+\linespread{1.05}
+
+\theoremstyle{plain}
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{ex}{Example}[section]
+
+%Macros
+% Functors
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+
+% Rings
+\newcommand{\CC}{\mathbf{C}}
+\newcommand{\FF}{\mathbf{F}}
+\newcommand{\Fb}{\overline{\mathbf{F}}}
+\newcommand{\QQ}{\mathbf{Q}}
+\newcommand{\Qb}{\overline{\mathbf{Q}}}
+\newcommand{\Qp}{\mathbf{Q}_p}
+\newcommand{\Qpb}{\overline{\mathbf{Q}}_p}
+\newcommand{\ZZ}{\mathbf{Z}}
+
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\tr}{tr}
+
+\newcommand{\GQ}{\Gal(\Qb/\QQ)}
+\newcommand{\Gp}{\mathrm{G}_p}
+\newcommand{\Vss}{V^\text{ss}}
