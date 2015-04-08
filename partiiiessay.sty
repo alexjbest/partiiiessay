@@ -1,5 +1,6 @@
 \ProvidesPackage{partiiiessay}[2015/02/28 v1.0 Essay style]
 \RequirePackage{amsfonts, amsmath, amssymb, amsthm, hyperref, mathpazo, enumerate}
+\RequirePackage[capitalise]{cleveref}
 \RequirePackage[nottoc,numbib]{tocbibind}
 \RequirePackage[protrusion=true,expansion=true]{microtype}
 \linespread{1.05}
@@ -13,7 +14,7 @@
 \newtheorem{ex}{Example}[section]
 \newtheorem{rmk}{Remark}[section]
 
-%Macros
+% Macros
 % Functors
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
@@ -31,11 +32,14 @@
 \newcommand{\Qpb}{\overline{\mathbf{Q}}_p}
 \newcommand{\Qlb}{\overline{\mathbf{Q}}_\ell}
 \newcommand{\ZZ}{\mathbf{Z}}
+\newcommand{\cO}{\mathcal{O}}
 
-\DeclareMathOperator{\Frob}{Frob}
-\DeclareMathOperator{\tr}{tr}
-
+% Groups
 \newcommand{\GQ}{\Gal(\Qb/\QQ)}
+\newcommand{\G}{\mathrm{G}}
 \newcommand{\Gp}{\mathrm{G}_p}
 \newcommand{\Gl}{\mathrm{G}_\ell}
+
 \newcommand{\rss}{\rho^\text{ss}}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\tr}{tr}
