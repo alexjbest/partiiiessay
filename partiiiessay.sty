@@ -1,5 +1,6 @@
 \ProvidesPackage{partiiiessay}[2015/02/28 v1.0 Essay style]
 \RequirePackage{amsfonts, amsmath, amssymb, amsthm, hyperref, mathpazo, enumerate}
+\RequirePackage[all]{xy}
 \RequirePackage[capitalise]{cleveref}
 \RequirePackage[nottoc,numbib]{tocbibind}
 \RequirePackage[protrusion=true,expansion=true]{microtype}
@@ -19,8 +20,11 @@
 % Functors
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
+
+\DeclareMathOperator{\disc}{disc}
 
 % Rings
 \newcommand{\CC}{\mathbf{C}}
@@ -45,6 +49,7 @@
 \newcommand{\ddq}{\frac{\mathrm{d}}{\mathrm{d}q}}
 \newcommand{\Id}{\mathrm{Id}}
 \newcommand{\nr}{\mathrm{nr}}
+\newcommand{\tamr}{\mathrm{tr}}
 \newcommand{\rss}{\rho^\text{ss}}
 \DeclareMathOperator{\Frob}{Frob}
 \DeclareMathOperator{\tr}{tr}
