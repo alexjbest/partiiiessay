@@ -6,13 +6,16 @@
 \date{}
 
 % TODO List:
+% use DDT elsewhere
+% Sort out weight / filt esp section results
+% optimal
+
+% Later TOD List:
+% nothing unrefed
 % Can any refs be made more specific?
 % use semicolons / generally check consistency of notation
 % spellcheck on a pc that works
-% BDJ page 30
 % be careful with equality bases conjugation etc.
-% spelling cheb brauer etc
-% lambda-adic p-adic
 
 \begin{document}
 \maketitle
@@ -33,10 +36,10 @@ The conjecture has since been proven correct by the work of numerous people, cul
 Here we provide a motivated account of the original form of the conjecture before going on to compute some explicit examples and examining some interesting consequences.
 
 Beyond the original paper there are many very good accounts of Serre's statement, including Cais \cite{Cais}, Edixhoven \cite{Edixhoven} (both of which use Katz's more general definition of mod $p$ modular forms), and Darmon \cite{Darmon} (which stays closer to the original article).
-There is also a chapter by Ribet--Stein \cite{RibetStein}. %TODO separate more expositary, move researchy ones to relevant sections.
-Alex Ghitza has prepared a translation of part of Serre's paper \cite{Ghitza} which has been helpful.
 Article by Edixhoven \cite{EdixhovenWeight}.
-%I consulted these articles while preparing the current essay and they were of great help. TODO
+There is also a chapter by Ribet--Stein \cite{RibetStein} and a \cite{RibetSteinBook}. %TODO separate more expositary, move researchy ones to relevant sections.
+Alex Ghitza has prepared a translation of part of Serre's paper \cite{Ghitza} which has been helpful.
+All of these articles were of great help when preparing the current essay and they were of great help.
 
 
 % ************************************************************************
@@ -180,7 +183,7 @@ However the eigenvalue for each $T_\ell$ is $\ell$ times the original.
 
 \subsection{Galois representations}\label{sec:gals}
 Here we mostly concern ourselves with fixing definitions and recalling important results that shall be needed later.
-There are many good references for this type of material, for example \cite{WieseGal}. %TODO something classical?
+There are many good references for this type of material, for example \cite{DDT,WieseGal}. %TOD something classical?
 
 \begin{defn}
 An \emph{$n$-dimensional mod $p$ Galois representation} is a homomorphism
@@ -189,7 +192,7 @@ An \emph{$n$-dimensional mod $p$ Galois representation} is a homomorphism
 \]
 Similarly, an \emph{$n$-dimensional $p$-adic Galois representation} is a homomorphism
 \[
-\rho\colon \GQ \to \GL_n(\QQ_p).
+\rho\colon \GQ \to \GL_n(\Qpb).
 \]
 
 Unless stated otherwise the term Galois representation will refer to a mod~$p$ Galois representation.
@@ -213,7 +216,7 @@ Given a 2-dimensional mod $p$ representation $\rho\colon G\to \GL_2(\Fb_p)$ we o
 \gamma & \delta
 \end{pmatrix},
 \]
-where $\alpha,\,\beta,\,\gamma$ and $\delta$ are characters, to indicate that there is some $A\in\GL_2(\Fb_p)$ such that for every $\sigma\in G$
+where $\alpha,\,\beta,\,\gamma$ and $\delta$ are functions $G \to \Fb_p$, to indicate that there is some $A\in\GL_2(\Fb_p)$ such that for every $\sigma\in G$
 \[
 \rho(\sigma) = A
  \begin{pmatrix}
@@ -278,8 +281,10 @@ The $\G_{\ell,u}$ form a descending chain as $u$ ranges over the integers that i
 \Gl = \G_{\ell,-1} \supseteq I_\ell = \G_{\ell,0} \supseteq  I_{\ell,w} = \G_{\ell,1} \supseteq\G_{\ell, 2}\supseteq\cdots.
 \]
 
-The groups we have been looking at correspond to important extensions on the Galois side. %TODO
-Let $\Qp^{\nr}$ denote the maximal non-ramified extension of $\Qp$ and $\Qp^{\tamr}$ denote the maximal tamely-ramified extension of $\Qp$. %TODO what does this mean?
+The groups we have been looking at give well known extensions on the Galois side.
+The fixed field of $I_\ell$ is maximal non-ramified extension of $\Ql$, denoted $\Ql^\nr$.
+Similarly, the fixed field of $I_{\ell,w}$ is maximal tamely-ramified extension of $\Ql$, denoted $\Ql^\tamr$.
+So the full set-up looks as follows
 \[
 \xymatrix{
 \Qlb      \ar@{-}[d]^{I_{\ell,w}} \ar@{-}@/_3pc/[ddd]_{\Gl} \ar@{-}@/^2.5pc/[dd]^{I_{\ell}}\\
@@ -303,9 +308,27 @@ Similarly we say $\rho$ is \emph{tamely ramified} at $\ell$ if $\rho|_{I_{\ell,w
 
 The usefulness of the Frobenius elements stems in part from the following theorem.
 
-\begin{thm}[Chebotarev's density theorem]\label{thm:cheb}
-Galois representations are determined completely by the images of Frobenius elements. %TODO
+\begin{thm}\label{thm:cheb}
+Let $S$ be a finite set of primes, then:
+\begin{enumerate}
+\item A semi-simple mod $p$ representation
+\[
+\rho\colon \GQ \to \GL_2(\Fb_p)
+\]
+is determined by the values of $\tr\rho(\Frob_\ell)$ and $\det\rho(\Frob_\ell)$ for all $\ell\not\in S$ at which $\rho$ is unramified.
+
+\item A mod $p$ character
+\[
+\phi\colon \GQ \to \Fb_p^*
+\]
+is determined by the values of $\phi(\Frob_\ell)$ for all $\ell\not\in S$ at which $\phi$ is unramified.
+\end{enumerate}
+
 \end{thm}
+\begin{proof}
+See \cite[prop. 25]{DDT}.
+\end{proof}
+
 
 \begin{defn}
 Let $\phi\colon\GQ \to K^*$ be a character for some field $K$ and fix an embedding $\Qb\hookrightarrow \CC$.
@@ -373,7 +396,9 @@ Now if we fix an embedding $\Qb\hookrightarrow\CC$ and considering complex conju
 \]
 so $\chi_p$ is an example of an odd character.
 
-Finally, straight from the definition we see that $\chi_p$ is of level 1.
+Finally, $\chi_p$ is defined to factor through $\Gal(\QQ(\zeta_p)/\QQ)$, this extension is tamely ramified and hence so it $\chi_p$.
+Therefore $\chi_p$ passes to a character on the group $I_{p}/I_{p,w} = I_{p,t}$.
+Straight from the definition we see that $\chi_p$ is a level 1 character of $I_{p,t}$.
 \end{rmk}
 
 For each $n \ge 1$ we now distinguish $n$ special mod $p$ characters of $I_{p,t}$ of level $n$, these will allow us to describe all such characters of a particular level.
@@ -393,14 +418,20 @@ The \emph{fundamental characters} of level $n$ are defined by extending $\psi$ t
 While any individual fundamental character is not canonical, the set of all of them of a particular level is.
 \end{defn}
 
+\begin{prop}[Serre]
+The fundamental character of level 1 is the cyclotomic character $\chi_p$ (or rather its induced character on $I_{p,t}$).
+\end{prop}
+\begin{proof}
+See \cite[prop. 8]{Serre72}.
+\end{proof}
+
 \begin{rmk}\label{rmk:prodchar}
 The embeddings are all obtained from any chosen one by applying Frobenius and as such the product of all fundamental characters of level $n$ is the same as the composition of the norm map $\FF_{p^n}^* \to \FF_p^*$ with any one.
-So this product will always be the unique fundamental character of level 1. %TODO is this cycl?
+So this product will always be the unique fundamental character of level 1, i.e. the cyclotomic character.
 \end{rmk}
 
 %TODO why can we write any char of level as fundam prod
-%TODO concequences of fund chars
-
+%TOD concequences of fund chars
 
 \begin{defn}\label{def:semisimp}
 The \emph{semisimplification} of a 2-dimensional representation $\rho$ is another representation, denoted $\rss$, that is obtained as follows.
@@ -427,19 +458,24 @@ In the general case the process of semisimplification is analogous, it is obtain
 \end{defn}
 
 \begin{defn}
-We now classify Galois representations $\rho_p\colon\Gp\to\GL_2(\Fb_p)$ that satisfy
+We now classify Galois representations
 \[
-\rho_p\sim
+\rho\colon\Gp\to\GL_2(\Fb_p)
+\]
+of the form
+\[
+\rho\sim
 \begin{pmatrix}
 \chi_p\varepsilon_1 & * \\
-0 & \varepsilon_2\end{pmatrix}.
+0 & \varepsilon_2\end{pmatrix},
 \]
+for some unramified characters $\varepsilon_1$ and $\varepsilon_2$.
+
 
 There is a unique maximal tamely ramified extension of $\Qp^{\nr}$ that is contained inside of $K$, we write $K_t$ for this extension, and we have the following setup % \ar@{-}@/_3.2pc/[ddd]_{I_p}
 \[
 \xymatrix{
-\Qpb      \ar@{-}[d] \ar@{-}@/^2.5pc/[ddd]^{I_p} \\
-K      \ar@{-}[d]|{\rho_p(I_{p,w})} \ar@{-}@/_2.5pc/[dd]_{\rho_p(I_{p})}\\
+K      \ar@{-}[d]|{\rho(I_{p,w})} \ar@{-}@/_2.5pc/[dd]_{\rho(I_{p})}\\
 K_t \ar@{-}[d] \\
 \Qp^\nr \ar@{-}[d]\\
 \Qp \\
@@ -476,7 +512,7 @@ If
 \[
 \nu_p(x_i) \equiv 0 \pmod{p}
 \]
-for all $i$ then we say that $\rho_p$ is \emph{peu ramif\'e}, otherwise if any $\nu_p(x_i)$ is coprime to $p$ then we say it is \emph{tr\`es ramif\'e}.
+for all $i$ then we say that $\rho$ is \emph{peu ramif\'e}, otherwise if any $\nu_p(x_i)$ is coprime to $p$ then we say it is \emph{tr\`es ramif\'e}.
 \end{defn}
 
 
@@ -577,7 +613,7 @@ Looking at the representation $\rho_f$ coming from this theorem we can see that 
 \[
 \det(\rho_f(\Frob_\ell)) = \chi_p^{k-1}(\Frob_\ell)\varepsilon(\Frob_\ell)
 \]
-for all $\ell \nmid Np$ (here viewing $\varepsilon$ as character of $\GQ$ now) and by applying Chebotarev (\cref{thm:cheb}) we get
+for all $\ell \nmid Np$ (here viewing $\varepsilon$ as character of $\GQ$ now) and by applying \cref{thm:cheb} we see that in fact
 \[
 \det\rho_f = \varepsilon\chi_p^{k-1}.
 \]
@@ -604,24 +640,25 @@ We look at the existence statement, or \emph{qualitative form} first.
 
 \begin{conjecture}[Serre's conjecture, qualitative form]\label{conj:qual}
 Let $\rho\colon \GQ \to \GL_2(\Fb_p)$ be a continuous, odd, irreducible Galois representation.
-Then there exists a normalised cuspidal mod $p$ eigenform $f$ such that $\rho$ is isomorphic to $\rho_f$, the Galois representation associated to $f$.
+Then there exists a normalised cuspidal mod $p$ eigenform $f$, such that $\rho$ is isomorphic to $\rho_f$, the Galois representation associated to $f$.
 \end{conjecture}
 
 This is already a very useful thing to know: any statement one could prove about Galois representations attached to  modular forms, by using the theory of these forms for example, would hold for all odd 2-dimensional mod $p$ Galois representations (see, for example, \cref{sec:artin}).
-One interesting consequence of this type stems from the fact that Deligne's construction of mod $p$ Galois representations from modular forms is actually of $\lambda$-adic representations.
-If we were to assume \cref{conj:qual} and then use this construction, we would be able to lift all irreducible odd 2-dimensional mod $p$ Galois representations to $\lambda$-adic representations.
+One interesting consequence of this type stems from the fact that Deligne's construction of mod $p$ Galois representations from modular forms is actually of $p$-adic representations.
+If we were to assume \cref{conj:qual} and then apply this construction, we would be able to lift all irreducible odd 2-dimensional mod $p$ Galois representations to $p$-adic Galois representations.
 %TOD elaborate on importance / use
+%TOD ramakrishna?
 
 This conjecture (at least for Galois representations unramified outside $p$) appeared much earlier than the Duke paper and is mentioned by Serre in a 1975 paper \cite[sec. 3]{Serre75}.
-It was computations performed by J.-F. Mestre that convinced Serre that there was a plausible strengthening of this conjecture, and this led to the form we are about to see.
+It was computations performed by J.-F. Mestre that convinced Serre that strengthening this conjecture was plausible, and this led to the form we are about to see.
 
 A similar statement to the one above also holds for reducible representations, which correspond to Eisenstein series instead.
-However we do not consider this case here as it is not what the refined conjecture deals with.
+However we will not cover this case here as it is not what the refined conjecture deals with.
 
 
 \subsection{The refined form}
 Given the above statement one might also ask about the properties of the form $f$ whose existence is claimed.
-Can anything be said about the weight and level of $f$ based only on the properties of $\rho$?
+Can anything be said about the weight and level of $f$, based only on the properties of $\rho$?
 Serre also conjectured that the answer to this question is yes.
 He defined a weight, level and character for each $\rho$, such that there should be a form $f$ of that weight, level and character that $\rho$ is attached to.
 In a slightly backwards manner we will first state this refined form of the conjecture, before moving on to motivate and define the integers $N(\rho)$, $k(\rho)$ and character
@@ -641,22 +678,27 @@ whose associated Galois representation $\rho_f$ is isomorphic to $\rho$.
 Moreover the $N(\rho)$ and $k(\rho)$ are the minimal weight and level for which there exists such a form $f$.
 \end{conjecture}
 
-This conjecture is very bold, even given the existence statement of \cref{conj:qual} it is not clear that a minimal weight and level should exist simultaneously, let alone be given by the relatively straightforward (though intricate) description that we are about to see.
-
 From now on we refer to a Galois representation $\rho$ satisfying the hypotheses of this conjecture as being of \emph{Serre-type}.
 
+This conjecture is very bold, even given the existence statement of \cref{conj:qual} it is not clear that a minimal weight and level should exist simultaneously, let alone be given by the relatively straightforward (though intricate) description that we are about to see.
+
+If correct however, the refined form is eminently more useful than the qualitative form for any practical applications.
+The precise definition of the level, weight and character often allow one to actually find an associated eigenform and work explicitly with it to study a particular Galois representation.
+Doing this would be far more difficult in general if no knowledge of the modular forms side could be obtained from the representation.
+
+We will now spend some time giving Serre's recipe for the weight, level and character.
+First however we will look at some results that will lead us to this recipe.
 
 \subsection{Results on Galois representations associated to modular forms}\label{sec:galassoc}
 In order to try and understand which eigenforms can give rise to a particular representation, it is useful to take an arbitrary eigenform and study the properties of the representation attached to it, in an attempt to see what information about the eigenform may be recovered.
-Several people have obtained interesting results of this type.
-The following results will be helpful for our definition of the weight and level.
+Several people have obtained interesting results of this type which will be helpful for our definition of the weight and level.
 
 We fix a prime $p$ and a normalised eigenform $f \in S_k(N,\,\varepsilon;\,\Fb_p)$ with $q$-expansion
 \[
 f = \sum_{n\ge 1} a_nq^n.
 \]
 Let $\rho_f$ be the mod $p$ Galois representation attached to $f$ by \cref{thm:assoc}.
-Concerning the conductor of $\rho_f$ there is the following result due to Carayol and Livn\'e \cite{Carayol, Livne}.
+Concerning the conductor of $\rho_f$ there is the following nice result due to Carayol and Livn\'e \cite{Carayol, Livne}.
 
 \begin{thm}\label{thm:level}
 Let $N(\rho_f)$ be the level associated to $\rho_f$ (which we will define explicitly in \cref{subsec:level}), then
@@ -665,13 +707,27 @@ N(\rho_f)|N.
 \]
 \end{thm}
 
-Given this it is natural to hope that any Galois representation of Serre-type arises from a form of level exactly $N(\rho)$, of course we still have yet to define this quantity!
+Given this it is natural to hope that any Galois representation $\rho$ of Serre-type arises from a form of level exactly $N(\rho)$ as this is the minimal possible, of course we still have yet to define this quantity!
 \\[12pt] \noindent
 We can also make useful observations concerning the restriction of $\rho_f$ to $\Gp$, and its subgroups, these have implications for our definition of the weight.
-There are two main cases depending on whether $a_p \ne 0$ (the \emph{ordinary} case) or otherwise (the \emph{supersingular} case).
+There are two main cases here depending on whether $a_p \ne 0$ (the \emph{ordinary} case) or otherwise (the \emph{supersingular} case).
+We start with the supersingular case.
+
+\begin{thm}[Fontaine]\label{thm:super}
+Suppose $2\le k \le p +1$ and $a_p = 0$ then $\rho_{f}|_{\Gp}$ is irreducible, moreover, letting $\psi_1$ and $\psi_2$ be the two fundamental characters of level 2, we have
+\[
+\rho_{f}|_{I_p} \sim \begin{pmatrix} \psi_1^{k-1} & 0 \\ 0 & \psi_2^{k-1}\end{pmatrix}.
+\]
+\end{thm}
+
+This was originally proved by Fontaine in letters to Serre in 1979.
+There is a published proof in \cite[sec. 6]{EdixhovenWeight}.
+
+Now in the ordinary case we have slightly different behaviour.
 
 \begin{thm}[Deligne]\label{thm:ordinary}
-Suppose $2\le k\le p+1$ and $a_p \ne 0$ then $\rho_{f}|_{\Gp}$ is reducible, moreover, letting $\lambda(a)\colon \Gp \to \Fb_p^*$ be the unramified character of $\Gp$ that takes each $\Frob_p \in \Gp /I_p$ to $a\in\Fb_p^*$, we have
+Suppose $2\le k\le p+1$ and $a_p \ne 0$ then $\rho_{f}|_{\Gp}$ is reducible.
+Moreover, letting $\lambda(a)\colon \Gp \to \Fb_p^*$ be the unramified character of $\Gp$ that takes each $\Frob_p \in \Gp /I_p$ to some $a\in\Fb_p^*$, we have
 \[
 \rho_{f}|_{\Gp} \sim \begin{pmatrix} \chi_p^{k-1}\lambda(\varepsilon(p)/a_p) & * \\ 0 & \lambda(a_p)\end{pmatrix}.
 \]
@@ -685,17 +741,8 @@ In particular when we look at the restriction to inertia we get
 A proof of this result when $k \le p$ is given in \cite{Gross} and the general case was originally proved in an unpublished letter from Deligne to Serre.
 %TOD add in others, wiles?
 
-Now in the supersingular case we have slightly different behaviour.
-
-\begin{thm}[Fontaine]\label{thm:super}
-Suppose $2\le k \le p +1$ and $a_p = 0$ then $\rho_{f}|_{\Gp}$ is irreducible, moreover, letting $\psi_1$ and $\psi_2$ be the two fundamental characters of level 2, we have
-\[
-\rho_{f}|_{I_p} \sim \begin{pmatrix} \psi_1^{k-1} & 0 \\ 0 & \psi_2^{k-1}\end{pmatrix}.
-\]
-\end{thm}
-
-This was originally proved by Fontaine in letters to Serre in 1979.
-There is a published proof in \cite[sec. 6]{EdixhovenWeight}.
+As $2 \equiv p + 1\pmod{p-1}$ both the minimal value of $k$ and maximal give us similar looking representations in this theorem, this leaves us unable to tell exactly what $k$ was just from the restriction to inertia.
+This will cause us some issues later, fortunately the following result will allow us to distinguish these two cases.
 
 \begin{thm}[Mazur]\label{thm:mazur}
 Let $k = p + 1$ and assume moreover that $f$ has \emph{filtration} $p+1$ and that $\rho_{f}$ is irreducible then $\rho_{f}|_{\Gp}$ tr\`es ramif\'e.
@@ -704,8 +751,11 @@ Let $k = p + 1$ and assume moreover that $f$ has \emph{filtration} $p+1$ and tha
 For $p> 2$ and trivial character this is due to Mazur \cite[sec. 6]{Ribet90}.
 In \cite[sec. 2]{EdixhovenWeight} Edixhoven gives a modification to the general case.
 \\[12pt] \noindent
-Finally, recall that the $\Theta$ operator preserves the set of mod $p$ normalised cuspidal eigenforms of a particular level.
-So we may consider how the action of $\Theta$ affects the associated Galois representations, it turns out that $\Theta$ changes this representation in a very simple way.
+In all the theorems we have just introduced the weight $k$ is at most $p+1$, of course we can make Galois representation from heigher weight eigenforms.
+So we need some way of finding out about representations attached to higher weight forms based on what we know about low weight ones.
+To do this we recall that the $\Theta$ operator preserves the set of mod $p$ normalised cuspidal eigenforms of a particular level, but in most cases it actually increases the weight of the eigenform.
+
+We then need to know how the action of $\Theta$ affects the associated Galois representation, in fact $\Theta$ changes these representations in a very simple way.
 
 \begin{prop}\label{prop:theta}
 Let
@@ -731,7 +781,7 @@ and
                                    &= \ell^2\ell^{k-1}\varepsilon(\ell)\\
                                    &= \det((\chi_p \otimes \rho_{f})(\Frob_{\ell})).
 \end{align*}
-By Chebotarev and Brauer--Nesbitt we have that the representations involved are isomorphic.
+By \cref{thm:cheb} we have that the representations involved are isomorphic.
 \end{proof}
 
 So if $p\nmid k$ then applying $\Theta$ shifts the level up by $p+1$ and twists the associated representation by $\chi_p$.
@@ -744,21 +794,20 @@ However it seems likely that observations of these results in specific examples 
 Assume that we have a Galois representation $\rho\colon \GQ \to \GL_2(\Fb_p)$ of Serre-type.
 We now define the integer $N(\rho) \ge 1$ which plays the role of the optimal level in the refined conjecture.
 
-We can equivalently view our representation $\rho$ as a homomorphism
+We can view our representation $\rho$ as a homomorphism
 \[
 \GQ \to \Aut(V),
 \]
 where $V$ is a two-dimensional $\Fb_p$ vector space.
 Letting $\G_{\ell,i}\subset \GQ$ be the $i$th ramification group at $\ell$ for a prime $\ell$, as defined in \cref{def:inert}, we can consider the fixed subspace of $V$ for each $\ell$ and $i$,
 \[
-V^{\ell,i} = \{v\in V : \rho(\sigma) v = v\ \forall \sigma \in \G_{\ell,i}\}.
+V^{\ell,i} = \{\mathbf{v}\in V : \rho(\sigma) \mathbf{v} = \mathbf{v}\ \forall \sigma \in \G_{\ell,i}\}.
 \]
-For each $\ell$ we can then define
+For each $\ell$ we then define
 \[
 \nu_\ell(\rho) = \sum_{i = 0}^{\infty} \frac{1}{[\G_{\ell,0} : \G_{\ell,i}]} \dim\left(V/V^{\ell,i}\right),
 \]
 this quantity is (non-trivially) an integer \cite[p. 99]{SerreLF}.
-
 We then define our level by
 \[
 N(\rho) = \prod_{\substack{\ell \ne p\\ \ell\text{ prime}}} \ell^{\nu_\ell(\rho)},
@@ -767,7 +816,7 @@ which is indeed a positive integer, by construction it is coprime to $p$.
 This definition is almost that of the \emph{Artin conductor} of a representation, but here the $p$ part is ignored.
 
 \begin{rmk}\label{rmk:unram}
-Unwinding this definition when $\rho$ is unramified at some $\ell$, we see that each $V^{\ell,i}$ is in fact the whole of $V$, as the ramification groups involved are trivial.
+Unwinding this definition when $\rho$ is unramified at some $\ell$, we see that each $V^{\ell,i}$ is in fact the whole of $V$, as all the ramification groups involved are trivial.
 Hence in this case $\nu_\ell(\rho) = 0$ and so $N(\rho)$ is only divisible by the primes $\ell \ne p$ at which $\rho$ is ramified.
 \end{rmk}
 
@@ -833,46 +882,47 @@ We have now written
 \]
 and so, comparing with \cref{rmk:detrho}, we set $\varepsilon(\rho)$ to be the $\varepsilon$ obtained here.
 We also see that $h$ had better be the same as $k(\rho)-1$ modulo $p-1$.
-Now all we have left to do is define the actual value of $k(\rho)$, knowing its class mod $p-1$.
 
+%Now all we have left to do is define the actual value of $k(\rho)$, knowing its class mod $p-1$.
 
 
 \subsection{The optimal weight}
 We now come to the final ingredient in Serre's recipe, that of the weight $k(\rho)$.
 
-The general strategy of our approach is to express a representation of Serre-type as a twist of another representation, one that looks like it comes from a cusp form.
+The general strategy of our approach is to express a representation of Serre-type as a twist of another representation, one that looks like it comes from a cusp form of low weight.
 We then read off the minimal weight of a cusp form that could give this twisted representation.
-Then we can apply the results above regarding the $\Theta$ operator (\cref{prop:theta}) to define the weight of the original representation.
+Then we apply the results above regarding the $\Theta$ operator (\cref{prop:theta}) to define the weight of the original representation.
 
 Given our Galois representation
 \[
-\rho \colon \GQ \to \Aut(V)
+\rho \colon \GQ \to \GL_2(\Fb_p)
 \]
-recall from \cref{sec:gals} that we can form a representation of $\Gp$ by composing with a restriction map $\Gp \to\GQ$, to obtain
+%recall from \cref{sec:gals} that we can form a representation of $\Gp$ by composing with a restriction map $\Gp \to\GQ$, to obtain
+we restrict to the subgroup $\Gp$ to form
 \[
-\rho_p\colon \Gp \to \GQ \to \Aut(V).
+\rho_p\colon \Gp \to \GL_2(\Fb_p).
 \]
 The definition of $k(\rho)$ will only depend on this $\rho_p$ (in fact only on $\rho_p|_{I_p}$).
 As such the weight will only reflect the behaviour at $p$ of the representation, whereas the level reflected the behaviour away from $p$.
 We will from here on refer to $k(\rho)$ as $k(\rho_p)$ to emphasise this fact.
 
 \begin{prop}(Serre \cite[prop. 4]{Serre72})\label{prop:wildtriv}
-The semisimplification $\rss$ of $\rho$ is trivial when restricted to $I_{p,w}$.
+The semisimplification $\rss_p$ of $\rho_p$ is trivial when restricted to $I_{p,w}$.
 \end{prop}
 \begin{proof}
-It suffices to prove this for simple representations $\rho$, as a sum of trivial representations is trivial.
+It suffices to prove this for simple representations $\rho_p$, as a sum of trivial representations is trivial.
 
 The wild inertia $I_{p,w}$ is a pro-$p$-group, and so the image is also a pro-$p$-group.
 This group is finite, so it is simply a $p$-group, and defined over some finite field $\FF_q$.
-Consider $\FF_q$-vector space $V$ that realises $\rss|_{I_{p,w}}$,  additively $V$ is a $p$-group too.
-Looking at the action of $\rss|_{I_{p,w}}$ on $V$ we see that there is a singleton orbit $\{0\}$.
+Consider an $\FF_q$-vector space $V$ that realises $\rss_p|_{I_{p,w}}$,  additively $V$ is a $p$-group too, of order $q^2$.
+Looking at the action of $\rss_p|_{I_{p,w}}$ on $V$ we see that there is a singleton orbit $\{0\}$.
 As all orbits are of $p$-power order there must be an additional $p-1$ singleton orbits at least, else the orbits could not partition $V$.
 Therefore the fixed subspace $W$ of $V$ is non-trivial.
 However as $I_{p,w}$ is normal in $\Gp$ the subspace $W$ is stable under $\Gp$, hence must equal $V$ by simplicity.
 \end{proof}
 
-We may therefore view $\rss$ as a representation of $I_{p,t}$ we shall write $\rss_t$ for this new representation.
-The tame inertia group is an abelian, and so this representation is diagonalisable.
+We may therefore view $\rss_p$ as a representation of $I_{p,t}$, we shall write $\rss_t$ for this new representation.
+The tame inertia group is abelian, and so this representation is diagonalisable.
 The representation $\rss_t$ is therefore given by a pair of characters
 \[
 \phi_1,\,\phi_2\colon I_{p,t} \to \Fb_p^*.
@@ -890,7 +940,7 @@ Letting a Frobenius element at $p$ act by conjugation on $\sigma\in I_{p}$ we se
 \]
 and so
 \[
-\rss_t(\Frob_p) \rss_t(\sigma) \rss_t(\Frob_p^{-1}) =  \rss_t( \Frob_p\sigma \Frob_p^{-1}) = \rss_t(\sigma^p) = \rss_t(\sigma)^p,
+\rss_t( \Frob_p\sigma \Frob_p^{-1}) = \rss_t(\sigma^p) = \rss_t(\sigma)^p,
 \]
 so we have an equivalence of representations
 \[
@@ -907,10 +957,10 @@ We now treat three different cases separately, based on the levels of the charac
 
 
 \subsubsection{The level 2 case}\label{sec:l2}
-If the two characters $\phi_1$ and $\phi_2$ are of level 2 then $\rho$ is irreducible.
+If the two characters $\phi_1$ and $\phi_2$ are of level 2 then $\rho_p$ is irreducible.
 
-To see this, assume otherwise and consider some fixed subspace of the vector space realising $\rho$.
-This space must be 1-dimensional, so the representation acts by a character $\phi$. %TODO
+To see this, assume otherwise and consider some fixed subspace of the vector space realising $\rho_p$.
+By assumption this space must be 1-dimensional, so the representation acts by a character $\phi$. %TODO
 The character is defined on $\Gp$, hence we have
 \[
 \phi(\sigma) = \phi(\Frob_p\sigma\Frob_p^{-1}) = \phi^p(\sigma)
@@ -918,14 +968,14 @@ The character is defined on $\Gp$, hence we have
 so elements in the image of $\phi$ are fixed by $p$th powering.
 Hence $\phi$ must factor through $\FF_p^*$, i.e. $\phi$ is of level 1, which is a contradiction.
 
-So $\rho = \rss$ and the characters $\phi_1$ and $\phi_2$ above define the representation $\rho$.
+So $\rho_p = \rss_p$ and the characters $\phi_1$ and $\phi_2$ above define the representation $\rho_p|_{I_{p}}$.
 We can write them in terms the fundamental characters of level 2, $\psi_1$ and $\psi_2$, (as defined in \cref{def:fund}) and use this description to define $k(\rho_p)$.
 Specifically we can write $\phi_1$ as
 \[
 \phi_1 = \psi_1^a\psi_2^b
 \]
 with $0\le a,\,b\le p-1$.
-If $a = b$ then $\phi_1 = (\psi_1 \psi_2)^a$, which contradicts $\phi_1$ being of level 2 as $\psi_1\psi_2$ is a level 1 character (see \cref{rmk:prodchar}).
+If $a = b$ then $\phi_1 = (\psi_1 \psi_2)^a$, which contradicts $\phi_1$ being of level 2 as $\psi_1\psi_2$ is the level 1 cyclotomic character (recall \cref{rmk:prodchar}).
 Now we observe that
 \[
 \phi_2 = \phi_1^p = (\psi_1^a\psi_2^b)^p = \psi_2^a\psi_1^b,
@@ -933,7 +983,7 @@ Now we observe that
 so by switching the places of $\phi_1$ and $\phi_2$ we may assume that in fact $0\le a < b\le p-1$.
 So
 \[
-\rho_p \sim
+\rho_p|_{I_{p}} \sim
 \begin{pmatrix}
 \psi_1^b\psi_2^a & 0 \\
 0                & \psi_1^a\psi_2^b
@@ -941,9 +991,9 @@ So
 \]
 
 This now looks a bit like the supersingular case of \cref{thm:super}.
-So we massage our representation into the form seen in the theorem by factoring some characters out of $\rss$ to get
+So we massage our representation into the form seen in the theorem by factoring some characters out to get
 \[
-\rho_p \sim
+\rho_p|_{I_{p}} \sim
 \begin{pmatrix}
 \psi_1^b\psi_2^a & 0 \\
 0                & \psi_1^a\psi_2^b
@@ -955,9 +1005,9 @@ So we massage our representation into the form seen in the theorem by factoring 
 \chi_p^a\begin{pmatrix}
 \psi_1^{b-a} & 0 \\
 0            & \psi_2^{b-a}
-\end{pmatrix}.
+\end{pmatrix}
 \]
-If we were just considering the matrix on the right we would like to set $k(\rho_p) - 1 = b - a$, however we have twisted by $\chi_p^a$.
+If we were just considering the rightmost matrix on we would like to set $k(\rho_p) - 1 = b - a$, however we have twisted by $\chi_p^a$.
 Recalling \cref{prop:theta} we make the definition
 \[
 k(\rho_p) - 1 = b - a + a(p+1),
@@ -983,7 +1033,7 @@ Assuming $\phi_1$ and $\phi_2$ are of level 1 and the action of $I_p$ on $V$ is 
 0      & \chi_p^a \end{pmatrix}.
 \]
 So we obtain integers $a$ and $b$ defined modulo $p-1$, we can assume that $0\le a \le b \le p-2$ by switching $\phi_1$ and $\phi_2$ if necessary.
-This looks a little like the ordinary case we covered in \cref{thm:ordinary}.
+This looks a similar to the ordinary case we covered in \cref{thm:ordinary}.
 So we factor out a character again to get something that looks exactly like that theorem,
 \[
 \rho_p|_{I_p} \sim
@@ -1004,7 +1054,8 @@ or equivalently
 k(\rho_p) = 1 + pa + b
 \]
 as above, but there is a small issue this time.
-It is possible that $a = b = 0$, in which case this definition would give us $k(\rho_p) = 1$, however we do not wish to consider weight 1 forms at all here, so our formula needs modifying in this case.
+It is possible that $a = b = 0$, in which case this definition would give us $k(\rho_p) = 1$.
+However we do not wish to consider weight 1 forms at all here (indeed we only attached Galois representations to forms of weight at least 2), so our formula needs modifying in this case.
 Looking at \cref{subsec:char,prop:pm1} we see that it is only permissible to change the weight by multiples of $p-1$.
 So to remedy the situation we add $p-1$ when we are in the problem case.
 The definition in this case is then
@@ -1050,13 +1101,13 @@ We fix representatives $\alpha$ and $\beta$ now such that
 
 We can then proceed as normal, observing that
 \[
-\rho_p|I_{p} \sim \begin{pmatrix}
+\rho_p|_{I_{p}} \sim \begin{pmatrix}
 \chi_p^\beta & * \\
 0        & \chi_p^\alpha \end{pmatrix},
 \]
 then factoring out a twist by $\chi_p^a$ to get
 \[
-\rho_p|I_{p} \sim \chi_p^\alpha \begin{pmatrix}
+\rho_p|_{I_{p}} \sim \chi_p^\alpha \begin{pmatrix}
 \chi_p^{\beta - \alpha}& * \\
 0        & 1 \end{pmatrix}.
 \]
@@ -1127,39 +1178,44 @@ To see why this approach might be expected to produce the minimal weight when tw
 w(\Theta^i f),\, 0 \le i \le p + 1,
 \]
 for different mod $p$ eigenforms $f$.
-These sequence is known as a $\Theta$-cycle and 
+These sequences are known as $\Theta$-cycles and they are studied in detail in \cite{Jochnowitz}.
 
 
 \subsection{A counterexample}\label{subsec:counter}
-In fact the conjecture exactly as stated above is in fact \emph{incorrect} in general, this was noted by Serre in a letter to K. Ribet in 1987.
-The following counterexample is due to Serre and is given in \cite[sec. 2]{Ribet95} and also in \cite[sec. 21.6.1]{RibetSteinBook} which we follow here (see also the notes for Serre's paper in his collected papers).
+In fact the conjecture exactly as stated above is in fact \emph{incorrect}, this was noted by Serre in a letter to Ken Ribet in 1987.
+The following counterexample is due to Serre and is given in \cite[sec. 2]{Ribet95} and also in \cite[sec. 21.6.1]{RibetSteinBook} which we are following here (see also the notes for Serre's paper introducing the conjecture in his collected works).
 
 \begin{ex}
-Let $\alpha$ be a root of $x^2 + 3x+ 3$, then $\QQ(\alpha) = \QQ (\sqrt{-3})$.
+Let $\alpha$ be a root of $x^2 + 3x+ 3$, so that $\QQ(\alpha) = \QQ (\sqrt{-3})$.
 The space $S_2(13;\,\Zb)$ is spanned by the normalised eigenform
 \[
-q + (-\alpha - 3)q^{2} + (2 \alpha + 2)q^{3} + (\alpha + 2)q^{4} + (-2 \alpha - 3)q^{5} + O(q^{6})
+f= q + (-\alpha - 3)q^{2} + (2 \alpha + 2)q^{3} + (\alpha + 2)q^{4} + (-2 \alpha - 3)q^{5} + O(q^{6})
 \]
 and its $\Gal(\QQ(\alpha)/\QQ)$ conjugate form
 \[
-q + \alpha q^{2} + (-2 \alpha - 4)q^{3} + (-\alpha - 1)q^{4} + (2 \alpha + 3)q^{5} + O(q^{6}),
+g= q + \alpha q^{2} + (-2 \alpha - 4)q^{3} + (-\alpha - 1)q^{4} + (2 \alpha + 3)q^{5} + O(q^{6}),
 \]
 which is the other normalised eigenform in $S_2(13;\,\Zb)$.
 
-If we look at the associated mod 3 Galois representation it has determinant $\chi_3 \phi$ where $\phi$ is the Galois character coming from the extension $\QQ(\sqrt{13})/\QQ$.
+The mod 3 Galois representation attached to $f$ has determinant $\chi_3 \phi$ where $\phi$ is the Galois character coming from the extension $\QQ(\sqrt{13})/\QQ$.
+We can view $\phi$ as a Dirichlet character $(\ZZ/13\ZZ)^* \to \Fb_3$ using the arguments of \cref{subsec:level}.
 Serre's conjecture tells us that this character is our $\varepsilon(\rho)$ and so $\rho$ should arise from some eigenform $f$ in $S_2(13,\,\phi;\,\Fb_3)$.
-If we let $H$ be the group of squares in $(\ZZ/13\ZZ)^*$ then such an $f$ may be viewed as an modular form of weight 2 for the group
+Then let $H$ be the group of squares in $(\ZZ/13\ZZ)^*$, i.e. the kernel of $\phi$.
+Doing this we see that in fact $f$ may be viewed as a cusp form of weight 2 for the group
 \[
 \Gamma_H(13) = \left\{ \begin{pmatrix} a & b\\ c & d\\ \end{pmatrix} \in \SL_2(\ZZ) : c \equiv 0 \pmod{13},\,d \in H\right\}.
 \]
-While we did not define mod $p$ modular forms for more general congruence subgroups, the definition is the same.
-However the space of weight 2 cusp forms on $\Gamma_H(13)$ is zero, and so $f$ does not exist. %TODO
+Although we did not define mod $p$ modular forms for more general congruence subgroups, the definition is the same.
+The order of a character for such a form must divide 2.
+However the space of weight 2 cusp forms on $\Gamma_H(13)$ is a subspace of $S_2(13;\,\Fb_3)$.
+This larger space is spanned by $\overline{f}$ and $\overline{g}$, both of which have a character of order 6.
+So the space of mod $3$ weight 2 cusp forms on $\Gamma_H(13)$ is zero, and $f$ cannot exist.
 \end{ex}
 
 
 This problem is fairly isolated and only arises when we work with mod~2 Galois representations, or mod~3 Galois representations that have abelian restriction to $\Gal(\Qb/\QQ(\sqrt{-3})$. %TODO
 In order to fix this issue using our definition of modular forms it is necessary to change the definition of the character in these cases.
-This is slightly  as the definition of the character was rather clean and simple before.
+This problem is not a serious issue with the validity of the conjecture in general, if one simply ignores the character completely or is a bit careful this can be completely resolved.
 
 
 \subsection{The proof}
@@ -1177,8 +1233,8 @@ As we saw in \cref{subsec:small} for these small cases what needs to be shown is
 It is interesting to note that these proofs were not completely subsumed or rendered obsolete by the the proof of Khare--Wintenberger.
 Rather they help form the base case for an induction type argument which gives the full conjecture.
 
-Regarding the difficulties with the character mentioned in  \cref{subsec:counter} it is shown in ???? that if the refined version without the character condition holds then it holds with a modified character condition.
-The main theorems of \cite{KWI,KWII} do not mention the character at all but combining them with the work of ???? gives the full \cref{conj:ref} excepting the cases discussed.
+%TOD Regarding the difficulties with the character mentioned in  \cref{subsec:counter} it is shown in ???? that if the refined version without the character condition holds then it holds with a modified character condition.
+%TOD The main theorems of \cite{KWI,KWII} do not mention the character at all but combining them with the work of ???? gives the full \cref{conj:ref} excepting the cases discussed.
 
 
 % ************************************************************************
@@ -1358,11 +1414,10 @@ Going into detail would take us too far afield so this section is necessarily sk
 For more details see \cite{Ribet04} or \cite[chap. 15]{RibetSteinBook}.
 
 \begin{defn}
-An abelian variety $A$ over $\QQ$ is modular if there is a surjection defined over $\QQ$
+An abelian variety $A$ over $\QQ$ is \emph{modular} if there exists an $N$ such that there is a surjective map defined over $\QQ$
 \[
-J_1(N) \twoheadrightarrow A,
+J_1(N) \twoheadrightarrow A.
 \]
-for some $N$.
 \end{defn}
 
 \begin{defn}
@@ -1387,7 +1442,7 @@ Every abelian variety of $\GL_2$-type is modular.
 \end{thm}
 
 This theorem implies the Taniyama--Shimura--Weil conjecture, or modularity theorem, first proved by Breuil, Conrad, Diamond and Taylor in 2001 \cite{BCDT}.
-However this modularity statement is significantly stronger and uses the full power of Serre's conjecture.
+However this modularity statement is significantly stronger and uses the full power of Serre's conjecture. %TODO check
 
 
 \bibliographystyle{alpha}

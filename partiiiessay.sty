@@ -8,13 +8,13 @@
 \allowdisplaybreaks
 
 \theoremstyle{plain}
-\newtheorem{conjecture}{Conjecture}[section]
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{prop}{Proposition}[section]
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{conjecture}[thm]{Conjecture}
+\newtheorem{prop}[thm]{Proposition}
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[section]
-\newtheorem{ex}{Example}[section]
-\newtheorem{rmk}{Remark}[section]
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rmk}[thm]{Remark}
 
 % Macros
 % Functors
