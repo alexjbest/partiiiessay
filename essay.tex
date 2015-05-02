@@ -258,10 +258,10 @@ D_\ell =\{\sigma \in G : \sigma(\mathfrak{L}) \subset \mathfrak{L}\}
 be the \emph{decomposition group} at $\ell$ of $G$.
 Now take $i$ to be a non-negative integer, we define the $i$th \emph{higher ramification group} to be
 \[
-G_{\ell,i} = \{\sigma \in G_\ell : \sigma(x) - x \in \mathfrak{L}^{i + 1}\ \forall x \in \cO_{K} \}.
+G_{\ell,i} = \{\sigma \in D_\ell : \sigma(x) - x \in \mathfrak{L}^{i + 1}\ \forall x \in \cO_{K} \}.
 \]
 These groups tell us how much of the whole of $G$ we are seeing if we just look modulo powers of $\mathfrak{L}$.
-They form a descending chain as $i$ varies
+They form a descending chain as $i$ increases
 \[
 D_\ell\supseteq G_{\ell,0} \supseteq G_{\ell,1} \supseteq G_{\ell, 2}\supseteq\cdots.
 \]
@@ -865,7 +865,7 @@ We then set the level to be
 \[
 N(\rho) = \prod_{\substack{\ell \ne p\\ \ell\text{ prime}}} \ell^{\nu_\ell(\rho)}.
 \]
-This is indeed a positive integer, and by construction it is coprime to $p$.
+This is indeed a positive integer, and by construction it is coprime to $p$, this is necessary require for it to be the level of a mod $p$ cusp form.
 This number serves to quantify the higher ramification of a Galois representation at all primes other than $p$, the larger the ramification groups for a particular prime, the larger the power of that prime in $N(\rho)$.
 The definition here is almost that of the \emph{Artin conductor} of a representation, but here the $p$-part is ignored.
 
@@ -1025,7 +1025,7 @@ Specifically we can write $\phi_1$ as
 \phi_1 = \psi_1^a\psi_2^b
 \]
 with $0\le a,\,b\le p-1$.
-If $a = b$ then $\phi_1 = (\psi_1 \psi_2)^a=\chi_p^a$, which contradicts $\phi_1$ being of level 2 as the mod $p$ cyclotomic character is of level 1 (recall \cref{rmk:prodchar}).
+If $a = b$ then $\phi_1 = (\psi_1 \psi_2)^a=\chi_p^a$ (recall \cref{rmk:prodchar}), which contradicts $\phi_1$ being of level 2 as the mod $p$ cyclotomic character is of level 1.
 Now we observe that
 \[
 \phi_2 = \phi_1^p = (\psi_1^a\psi_2^b)^p = \psi_2^a\psi_1^b,
@@ -1355,7 +1355,7 @@ So we obtain an irreducible a mod $5$ Galois representation
 \rho\colon \Gal(\Qb/\QQ) \to \Gal(K/\QQ) \xrightarrow{\sim} D_4  \to \GL_2(\FF_5).
 \]
 What does Serre have to say about $\rho$?
-After fixing an embedding $K \hookrightarrow \CC$ complex conjugation corresponds to $\sigma$ and this maps to a matrix of determinant $-1$, so we see that this representation is indeed odd, and Serre's conjecture will apply.
+After fixing an embedding $K \hookrightarrow \CC$, complex conjugation corresponds to a reflection which maps to a matrix of determinant $-1$, so we see that this representation is indeed odd, and Serre's conjecture will apply.
 
 The determinant of $\rho$ takes $\tau$ to 1 and $\sigma$ to $-1$, so it factors through $\Gal(\QQ(i)/\QQ)$ and corresponds to the non-trivial Dirichlet character of conductor 4.
 
@@ -1400,7 +1400,7 @@ Doing this gives us a number of eigenforms, including
 \begin{multline*}
 q + 2q^{5} + 2q^{13} + 4q^{25} + 3q^{37} + q^{49} + 3q^{61} + 4q^{65} + 3q^{73} + 3q^{97} + O(q^{109}),
 \end{multline*}
-which we verify has the expected $q$-expansion coefficients up to $q^{400}$ (i.e. $2$ if $\Frob_p= 1$, $-2$ if $\Frob_p = \tau^2$ and $0$ otherwise).
+which we verify has the expected $q$-expansion coefficients $a_p$ for prime $p$ up to $q^{1000}$ (i.e. $2$ if $\Frob_p= 1$, $-2$ if $\Frob_p = \tau^2$ and $0$ otherwise).
 
 \end{ex}
 
@@ -1411,7 +1411,7 @@ which we verify has the expected $q$-expansion coefficients up to $q^{400}$ (i.e
 \section{Consequences}
 Serre's conjecture is a strong statement that implies many other results within number theory.
 We now mention briefly a few of these.
-
+The first two are little more than examples but interesting ones nonetheless, whereas the third is a very deep statement within arithmetic geometry.
 
 \subsection{Finiteness of classes of Galois representations}
 First let us examine a very direct consequence.
@@ -1419,7 +1419,7 @@ Fix a prime $p$ and an integer $N$ and consider Serre-type Galois representation
 \[
 \rho\colon \GQ \to \GL_2(\Fb_p)
 \]
-whose conductors $N(\rho)$ divide $N$.
+whose associated levels $N(\rho)$ divide $N$.
 Serre's conjecture states that each corresponds to some normalised mod $p$ eigenform of level $N(\rho)|N$ and weight $k(\rho)$ in the range $[2,p^2-1]$ (or $\{2,\,4\}$ for $p=2$).
 However there are only finitely many spaces of forms satisfying these requirements and only finitely many normalised eigenforms in each.
 Therefore for each prime $p$ and integer $N$ there are only finitely many isomorphism classes of mod~$p$ Serre-type Galois representations of conductor dividing $N$.
@@ -1535,7 +1535,7 @@ Elliptic curves are of $\GL_2$-type because all endomorphism rings over characte
 \]
 \end{ex}
 
-Ken Ribet has shown \cite{Ribet04} that Serre's conjecture implies the following nice classification of which abelian varieties are modular.
+Ken Ribet has shown \cite{Ribet04} that Serre's conjecture implies the following nice classification of modular abelian varieties.
 
 \begin{thm}
 Every abelian variety of $\GL_2$-type is modular.
